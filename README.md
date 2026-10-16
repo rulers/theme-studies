@@ -1,5 +1,13 @@
 # Theme Studies
 
+**[Live Demo →](https://rulers.github.io/theme-studies/) · [TypeScript Demo →](https://rulers.github.io/theme-studies/typescript/) · [Cube →](https://rulers.github.io/theme-studies/themes/cube/) · [Flow →](https://rulers.github.io/theme-studies/themes/move-v2/)**
+
+<a href="https://rulers.github.io/theme-studies/themes/cube/">
+  <img src="./docs/cube-demo.gif" alt="青とオレンジの写真キューブが回転するTheme Studiesのデモ" width="1200" />
+</a>
+
+<sub>Cubeの実画面を収録した6秒ループGIF（6倍速）。クリックでデモへ。[静止画を見る](./docs/cube-demo.png)</sub>
+
 Next.js / React / JavaScriptで作った5つのインタラクティブなテーマです。表示構造・操作処理・CSS・投稿データを分離しています。
 
 **[TypeScript版](./typescript/README.md)** も `typescript/` に収録しています。5テーマを維持した独立アプリで、`strict` モードの型チェックに対応します。JavaScript版はこのリポジトリ直下です。
@@ -21,8 +29,6 @@ Next.js / React / JavaScriptで作った5つのインタラクティブなテー
 | Motion | 背景動画と2列の投稿 | `/themes/video` |
 
 FlowはLiquid / Dissolve / Chromatic / Pixel / Irisに対応。スクロールで進行し、逆スクロールで巻き戻せます。[操作・実装・検証結果](./docs/OKMOVE-V2.md)
-
-![Flow](./docs/flow-preview.png)
 
 ## 起動
 

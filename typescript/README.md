@@ -1,5 +1,11 @@
 # Theme Studies — TypeScript
 
+**[Live Demo →](https://rulers.github.io/theme-studies/typescript/) · [Cube →](https://rulers.github.io/theme-studies/typescript/themes/cube/) · [Flow →](https://rulers.github.io/theme-studies/typescript/themes/move-v2/)**
+
+<a href="https://rulers.github.io/theme-studies/typescript/themes/cube/">
+  <img src="../docs/cube-demo.gif" alt="青とオレンジの写真キューブが回転するTheme Studiesのデモ" width="1200" />
+</a>
+
 JavaScript版と同じ5テーマ・5種類のWebGLトランジションを持つ、独立したNext.jsアプリです。元のJavaScript版はリポジトリ直下に残しています。
 
 [公開サイト](https://rulers.github.io/theme-studies/typescript/) / [Flowを開く](https://rulers.github.io/theme-studies/typescript/themes/move-v2/)
