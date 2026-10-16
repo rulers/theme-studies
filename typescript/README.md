@@ -2,6 +2,8 @@
 
 JavaScript版と同じ5テーマ・5種類のWebGLトランジションを持つ、独立したNext.jsアプリです。元のJavaScript版はリポジトリ直下に残しています。
 
+[公開サイト](https://rulers.github.io/theme-studies/typescript/) / [Flowを開く](https://rulers.github.io/theme-studies/typescript/themes/move-v2/)
+
 ## 起動
 
 Node.js 22.18以降を使用します。リポジトリ直下から:

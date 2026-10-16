@@ -12,6 +12,8 @@ export function generateStaticParams() {
   return themes.map(({ id }) => ({ theme: id }));
 }
 
+export const dynamicParams = false;
+
 const components = {
   cube: CubeTheme,
   focus300: FocusTheme,

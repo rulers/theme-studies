@@ -441,7 +441,7 @@ blockquote cite {
   pointer-events: none;
 }
 .video-background {
-  background: #17363c url("/images/blue.svg") center/cover;
+  background: #17363c url("../public/images/blue.svg") center/cover;
 }
 .video-background iframe {
   position: absolute;

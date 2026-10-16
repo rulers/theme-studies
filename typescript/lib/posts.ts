@@ -2,12 +2,13 @@
 // Text is plain text, never untrusted HTML or embed code.
 import type { Post } from "./types";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const posts: readonly Post[] = [
   {
     id: "01",
     type: "photo",
     title: "Electric blue",
-    image: "/images/blue.svg",
+    image: `${basePath}/images/blue.svg`,
     alt: "青い円が重なる抽象図形",
     caption: "Color is a place you can go.",
     tags: ["color", "study"],
@@ -16,7 +17,7 @@ const posts: readonly Post[] = [
     id: "02",
     type: "photo",
     title: "After the sun",
-    image: "/images/orange.svg",
+    image: `${basePath}/images/orange.svg`,
     alt: "オレンジ色のグラデーションと黒い円",
     caption: "A small experiment in warmth.",
     tags: ["light"],
@@ -33,7 +34,7 @@ const posts: readonly Post[] = [
     id: "04",
     type: "photo",
     title: "Soft signal",
-    image: "/images/pink.svg",
+    image: `${basePath}/images/pink.svg`,
     alt: "ピンクの背景と波状のライン",
     caption: "Somewhere between a signal and a feeling.",
     tags: ["form"],
@@ -57,7 +58,7 @@ const posts: readonly Post[] = [
     id: "07",
     type: "photo",
     title: "Blue, again",
-    image: "/images/blue.svg",
+    image: `${basePath}/images/blue.svg`,
     alt: "青い円が重なる抽象図形",
     caption: "Back to the beginning.",
     tags: ["loop"],
@@ -66,7 +67,7 @@ const posts: readonly Post[] = [
     id: "08",
     type: "photo",
     title: "Last light",
-    image: "/images/orange.svg",
+    image: `${basePath}/images/orange.svg`,
     alt: "オレンジ色のグラデーションと黒い円",
     caption: "The end of this sample archive.",
     tags: ["archive"],

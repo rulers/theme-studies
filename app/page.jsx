@@ -6,7 +6,17 @@ export default function Home() {
     <main className="index">
       <header className="index-heading">
         <span>FORM / MOTION STUDIES</span>
-        <span>FIVE INTERACTIVE THEMES</span>
+        <span>
+          JAVASCRIPT ·{" "}
+          <a
+            href={
+              process.env.NEXT_PUBLIC_OTHER_EDITION_URL ||
+              "http://localhost:3032"
+            }
+          >
+            TYPESCRIPT ↗
+          </a>
+        </span>
       </header>
       <h1>
         Old web.

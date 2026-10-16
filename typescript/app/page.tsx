@@ -6,7 +6,17 @@ export default function Home() {
     <main className="index">
       <header className="index-heading">
         <span>FORM / MOTION STUDIES</span>
-        <span>FIVE INTERACTIVE THEMES</span>
+        <span>
+          TYPESCRIPT ·{" "}
+          <a
+            href={
+              process.env.NEXT_PUBLIC_OTHER_EDITION_URL ||
+              "http://localhost:3000"
+            }
+          >
+            JAVASCRIPT ↗
+          </a>
+        </span>
       </header>
       <h1>
         Old web.
@@ -41,7 +51,7 @@ export default function Home() {
         ))}
       </div>
       <footer className="index-footer">
-        <span>JavaScript + JSX + CSS · Local sample data</span>
+        <span>TypeScript + TSX + CSS · Local sample data</span>
         <a href="https://github.com/okfocus/tumblr">
           Original themes by OKFocus ↗
         </a>

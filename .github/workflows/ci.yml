@@ -1,9 +1,10 @@
-name: CI
+name: CI and Pages
 
 on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -19,8 +20,17 @@ jobs:
         include:
           - edition: JavaScript
             directory: .
+            artifact: site-javascript
+            suffix: ""
+            other-suffix: /typescript/
           - edition: TypeScript
             directory: typescript
+            artifact: site-typescript
+            suffix: /typescript
+            other-suffix: /
+    env:
+      NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}${{ matrix.suffix }}
+      NEXT_PUBLIC_OTHER_EDITION_URL: /${{ github.event.repository.name }}${{ matrix.other-suffix }}
     defaults:
       run:
         working-directory: ${{ matrix.directory }}
@@ -36,3 +46,48 @@ jobs:
       - run: npm ci
       - run: npm run check
       - run: npm run build
+        env:
+          STATIC_EXPORT: "1"
+      - name: Verify exported pages and assets
+        working-directory: .
+        run: node scripts/check-export.mjs "${{ matrix.directory }}/out" "$NEXT_PUBLIC_BASE_PATH"
+      - uses: actions/upload-artifact@v7
+        if: github.event_name != 'pull_request'
+        with:
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.directory }}/out
+          if-no-files-found: error
+          retention-days: 1
+
+  deploy:
+    name: Deploy GitHub Pages
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: site-javascript
+          path: site
+      - uses: actions/download-artifact@v8
+        with:
+          name: site-typescript
+          path: site/typescript
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

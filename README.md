@@ -4,6 +4,14 @@ Next.js / React / JavaScriptで作った5つのインタラクティブなテー
 
 **[TypeScript版](./typescript/README.md)** も `typescript/` に収録しています。5テーマを維持した独立アプリで、`strict` モードの型チェックに対応します。JavaScript版はこのリポジトリ直下です。
 
+## 公開サイト
+
+- [JavaScript版](https://rulers.github.io/theme-studies/)
+- [TypeScript版](https://rulers.github.io/theme-studies/typescript/)
+- Flow: [JavaScript](https://rulers.github.io/theme-studies/themes/move-v2/) / [TypeScript](https://rulers.github.io/theme-studies/typescript/themes/move-v2/)
+
+トップページから両版を切り替えられます。`main`へのpushで両版を検証・静的書き出しし、成功した成果物をまとめてGitHub Pagesへ公開します。pull requestでは検証のみ実行します。
+
 | テーマ | 内容 | URL |
 | --- | --- | --- |
 | Cube | 写真を6面に映す回転する立方体 | `/themes/cube` |
@@ -41,6 +49,8 @@ http://localhost:3000 を開きます。確認は `npm test` と `npm run build`
 | `npm run build` | 本番ビルド |
 
 GitHub Actionsではpush / pull request時に両版の `npm ci` → `npm run check` → `npm run build` を実行します。生成ファイルと調査用の `reference/` はlint対象外です。CMS画像は固有の縦横比とSVGを扱うため、共通投稿表示の1箇所のみネイティブの`img`を使用し、理由付きでNext.jsの画像最適化ルールを除外しています。
+
+Pagesビルドは `STATIC_EXPORT=1` と `NEXT_PUBLIC_BASE_PATH` を指定し、`out/`へ書き出します。CIでは `scripts/check-export.mjs` で6ページと参照アセットの実在・パス接頭辞を検証します。通常のローカル開発では環境変数の指定は不要です。公開を戻す場合は対象コミットをrevertして`main`へpushします。
 
 TypeScriptはlintパーサーの対応範囲に合わせて6.0系を使用します。ESLint自体は10系です。
 
