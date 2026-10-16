@@ -2,6 +2,8 @@
 
 Next.js / React / JavaScriptで作った5つのインタラクティブなテーマです。表示構造・操作処理・CSS・投稿データを分離しています。
 
+**[TypeScript版](./typescript/README.md)** も `typescript/` に収録しています。5テーマを維持した独立アプリで、`strict` モードの型チェックに対応します。JavaScript版はこのリポジトリ直下です。
+
 | テーマ | 内容 | URL |
 | --- | --- | --- |
 | Cube | 写真を6面に映す回転する立方体 | `/themes/cube` |
