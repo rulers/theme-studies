@@ -17,13 +17,18 @@ http://localhost:3032 を開きます。Flowは `/themes/move-v2` です。JavaS
 ## 検証
 
 ```sh
+npm run lint
+npm run format:check
 npm run typecheck
 npm test
+npm run check
 npm run build
 npm start
 ```
 
 `typecheck` はNext.jsの型を生成してから `tsc --noEmit` を実行します。テストもTypeScriptで記述し、Node.jsの組み込みTypeScriptサポートで実行します。テストとアプリの両方を型チェック対象にしています。
+
+`check` はESLint・Prettier・型チェック・テストを順に実行します。自動修正は `npm run lint:fix`、整形は `npm run format`。ESLintのTypeScriptパーサーに合わせ、TypeScriptは6.0系を使用します。[共通の開発チェックとCI](../README.md#開発チェック)
 
 ## 型の構成
 

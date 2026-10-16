@@ -12,13 +12,18 @@ import type { ThemeProps } from "../lib/types";
 export default function MoveV2Theme({ posts }: ThemeProps) {
   const [selected, setSelected] = useState(0);
   const [strength, setStrength] = useState(0.65);
-  const gl = useWebGLTransition(posts, selected, strength);
-  const { space, active, go } = useDepthScroll(posts.length, gl.draw);
+  const {
+    canvas: canvasRef,
+    progressBar: progressBarRef,
+    status,
+    draw,
+  } = useWebGLTransition(posts, selected, strength);
+  const { space, active, go } = useDepthScroll(posts.length, draw);
   const current = posts[active];
   const effect =
     moveTransitions.find((item) => item.number === selected) ??
     moveTransitions[0];
-  const ready = gl.status === "ready";
+  const ready = status === "ready";
 
   return (
     <main
@@ -41,18 +46,18 @@ export default function MoveV2Theme({ posts }: ThemeProps) {
             >
               {ready
                 ? "WEBGL ACTIVE"
-                : gl.status === "loading"
+                : status === "loading"
                   ? "LOADING TEXTURES"
-                  : gl.status === "reduced"
+                  : status === "reduced"
                     ? "REDUCED MOTION"
                     : "HTML FALLBACK"}
             </span>
             <Link href="/themes/move">Depth ↗</Link>
           </div>
         </div>
-        <div className="v2-stage" data-renderer={gl.status}>
+        <div className="v2-stage" data-renderer={status}>
           <canvas
-            ref={gl.canvas}
+            ref={canvasRef}
             aria-hidden="true"
             className={ready ? "is-ready" : ""}
           />
@@ -128,7 +133,7 @@ export default function MoveV2Theme({ posts }: ThemeProps) {
           )}
         </div>
         <div className="v2-progress" aria-hidden="true">
-          <div ref={gl.progressBar} />
+          <div ref={progressBarRef} />
         </div>
         <p className="sr-only">
           {current &&

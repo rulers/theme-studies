@@ -27,6 +27,25 @@ npm run dev
 
 http://localhost:3000 を開きます。確認は `npm test` と `npm run build`、本番モードはビルド後 `npm start`。
 
+## 開発チェック
+
+両版にESLint（Next.js / React Hooks）とPrettierを導入しています。TypeScript版ではTypeScript用ルールとstrict型チェックも実行します。
+
+| コマンド | 内容 |
+| --- | --- |
+| `npm run lint` | 警告も含めてESLint違反を検出 |
+| `npm run lint:fix` | 自動修正できるlint違反を修正 |
+| `npm run format` | ソース・CSS・設定ファイルを整形 |
+| `npm run format:check` | 整形済みか確認 |
+| `npm run check` | lint・整形・テストを一括確認（TS版は型チェックも含む） |
+| `npm run build` | 本番ビルド |
+
+GitHub Actionsではpush / pull request時に両版の `npm ci` → `npm run check` → `npm run build` を実行します。生成ファイルと調査用の `reference/` はlint対象外です。CMS画像は固有の縦横比とSVGを扱うため、共通投稿表示の1箇所のみネイティブの`img`を使用し、理由付きでNext.jsの画像最適化ルールを除外しています。
+
+TypeScriptはlintパーサーの対応範囲に合わせて6.0系を使用します。ESLint自体は10系です。
+
+依存関係の確認（2026-10-17）: 両版とも `npm ci` は成功し、`npm audit --omit=dev` は0件です。開発依存にはNext.jsのlintプラグインから `braces` に至る依存チェーンでhighが5件報告されます。同じ原因の依存先を含む件数で、[上流の修正版は未提供](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)です。また、一部プラグインのpeer宣言がESLint 10に追いついていないため、インストール時にpeer警告が出ます。両版のlint実行は警告・エラー0件で確認しています。
+
 ## 分離した構成
 
 | 場所 | 役割 |

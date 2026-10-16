@@ -1,10 +1,11 @@
 export default function FeedEnd({ feed }) {
+  const { sentinel: sentinelRef, hasMore, loadMore, posts } = feed;
   return (
-    <div className="feed-end" ref={feed.sentinel}>
-      {feed.hasMore ? (
-        <button onClick={feed.loadMore}>もっと見る</button>
+    <div className="feed-end" ref={sentinelRef}>
+      {hasMore ? (
+        <button onClick={loadMore}>もっと見る</button>
       ) : (
-        <p role="status">End of sample archive / {feed.posts.length} posts</p>
+        <p role="status">End of sample archive / {posts.length} posts</p>
       )}
     </div>
   );

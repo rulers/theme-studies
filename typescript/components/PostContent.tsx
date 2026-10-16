@@ -9,7 +9,11 @@ export default function PostContent({
 }) {
   return (
     <>
-      {post.type === "photo" && <img src={post.image} alt={post.alt} />}
+      {post.type === "photo" && (
+        // CMS media keeps native intrinsic dimensions, including SVG sources.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={post.image} alt={post.alt} />
+      )}
       {post.type === "quote" && (
         <blockquote>
           <p>“{post.text}”</p>
